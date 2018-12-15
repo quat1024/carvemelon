@@ -1,0 +1,18 @@
+{
+	"type": "crafting_shaped",
+	"pattern": [
+		"A",
+		"B"
+	],
+	"key": {
+		"A": {
+			"item": "carvemelon:carved_melon"
+		},
+		"B": {
+			"item": "minecraft:redstone_torch"
+		}
+	},
+	"result": {
+		"item": "carvemelon:melon_o_lantern"
+	}
+}

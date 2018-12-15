@@ -1,0 +1,49 @@
+{
+	"variants": {
+		"facing=north": {
+			"model": "carvemelon:block/melon_o_lantern_side"
+		},
+		"facing=east": {
+			"model": "carvemelon:block/melon_o_lantern_side",
+			"y": 90
+		},
+		"facing=south": {
+			"model": "carvemelon:block/melon_o_lantern_side",
+			"y": 180
+		},
+		"facing=west": {
+			"model": "carvemelon:block/melon_o_lantern_side",
+			"y": 270
+		},
+		"facing=up_north": {
+			"model": "carvemelon:block/melon_o_lantern_up"
+		},
+		"facing=up_east": {
+			"model": "carvemelon:block/melon_o_lantern_up",
+			"y": 90
+		},
+		"facing=up_south": {
+			"model": "carvemelon:block/melon_o_lantern_up",
+			"y": 180
+		},
+		"facing=up_west": {
+			"model": "carvemelon:block/melon_o_lantern_up",
+			"y": 270
+		},
+		"facing=down_north": {
+			"model": "carvemelon:block/melon_o_lantern_down"
+		},
+		"facing=down_east": {
+			"model": "carvemelon:block/melon_o_lantern_down",
+			"y": 90
+		},
+		"facing=down_south": {
+			"model": "carvemelon:block/melon_o_lantern_down",
+			"y": 180
+		},
+		"facing=down_west": {
+			"model": "carvemelon:block/melon_o_lantern_down",
+			"y": 270
+		}
+	}
+}

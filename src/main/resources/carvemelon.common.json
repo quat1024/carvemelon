@@ -1,0 +1,13 @@
+{
+  "required": true,
+  "package": "quaternary.carvemelon.mixin",
+  "compatibilityLevel": "JAVA_8",
+  "mixins": [
+		"IMixinAxeItem",
+    "MixinRedstoneWire",
+		"MixinMobEntity"
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  }
+}
