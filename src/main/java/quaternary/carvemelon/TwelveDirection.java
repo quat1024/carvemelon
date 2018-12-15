@@ -1,6 +1,5 @@
 package quaternary.carvemelon;
 
-import com.sun.istack.internal.Nullable;
 import net.minecraft.entity.Entity;
 import net.minecraft.util.StringRepresentable;
 import net.minecraft.util.math.Direction;
@@ -28,7 +27,6 @@ public enum TwelveDirection implements StringRepresentable {
 	}
 	
 	public final Direction primaryDirection;
-	@Nullable
 	public final Direction secondaryDirection;
 	
 	public static final EnumMap<Direction, TwelveDirection> byPrimary = new EnumMap<>(Direction.class);

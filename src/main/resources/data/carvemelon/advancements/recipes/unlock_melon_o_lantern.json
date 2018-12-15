@@ -1,0 +1,36 @@
+{
+	"parent": "minecraft:recipes/root",
+	"rewards": {
+		"recipes": [
+			"carvemelon:craft_melon_o_lantern"
+		]
+	},
+	"criteria": {
+		"has_carved_melon": {
+			"trigger": "minecraft:inventory_changed",
+			"conditions": {
+				"items": [
+					{
+						"item": "carvemelon:carved_melon"
+					}
+				]
+			}
+		},
+		"has_redstone_torch": {
+			"trigger": "minecraft:inventory_changed",
+			"conditions": {
+				"items": [
+					{
+						"item": "minecraft:redstone_torch"
+					}
+				]
+			}
+		}
+	},
+	"requirements": [
+		[
+			"has_carved_melon",
+			"has_redstone_torch"
+		]
+	]
+}
