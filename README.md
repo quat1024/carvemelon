@@ -15,11 +15,11 @@ Stuff it does:
 * The Melon o'Lantern is not only a stylish, dim light source.
 * It also acts as a one-side redstone block.
 * Only the melon's face emits a redstone signal.
+* Render pumpkin overlay when it's on your head (needs a mixin)
 
 TODO List:
 
 * Properly support rotating my cool special 12-direction block state with e.g. structure blocks.
-* Render pumpkin overlay when it's on your head (needs a mixin)
 
 ### License
 

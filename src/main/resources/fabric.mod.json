@@ -1,11 +1,12 @@
 {
-  "id": "carvemelon",
-  "name": "Carve Melon",
-  "description": "Carve melons and use them in redstone!",
-  "version": "1.0.0",
-  "side": "universal",
-  "initializer": "quaternary.carvemelon.CarveMelon",
-  "mixins": {
-    "common": "carvemelon.common.json"
-  }
+	"id": "carvemelon",
+	"name": "Carve Melon",
+	"description": "Carve melons and use them in redstone!",
+	"version": "1.0.0",
+	"side": "universal",
+	"initializer": "quaternary.carvemelon.CarveMelon",
+	"mixins": {
+		"common": "carvemelon.common.json",
+		"client": "carvemelon.client.json"
+	}
 }

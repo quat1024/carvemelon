@@ -1,11 +1,9 @@
 {
 	"required": true,
-	"package": "quaternary.carvemelon.mixin",
+	"package": "quaternary.carvemelon.mixin.client",
 	"compatibilityLevel": "JAVA_8",
 	"mixins": [
-		"IMixinAxeItem",
-		"MixinRedstoneWire",
-		"MixinMobEntity"
+		"MixinInGameHud"
 	],
 	"injectors": {
 		"defaultRequire": 1
