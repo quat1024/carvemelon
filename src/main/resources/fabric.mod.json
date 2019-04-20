@@ -1,12 +1,32 @@
 {
+	"schemaVersion": 1,
 	"id": "carvemelon",
-	"name": "Carve Melon",
-	"description": "Carve melons and use them in redstone!",
-	"version": "1.0.0",
-	"side": "universal",
-	"initializer": "quaternary.carvemelon.CarveMelon",
-	"mixins": {
-		"common": "carvemelon.common.json",
-		"client": "carvemelon.client.json"
-	}
+	"version": "${gradleversion}",
+	
+	"name": "Carved Melons",
+	"description": "Carve melons, and use them in redstone!",
+	"authors": [ "quaternary" ],
+	"icon": "assets/carvemelon/melons_icon.png",
+	"contact": {
+		"sources": "https://github.com/quat1024/carvemelon",
+		"issues": "https://github.com/quat1024/carvemelon/issues"
+	},
+	
+	"license": "MPL-2.0",
+	
+	"entrypoints": {
+		"main": [
+			"quaternary.carvemelon.CarveMelon"
+		]
+	},
+	
+	"mixins": [
+		{
+			"config": "carvemelon.mixin.json"
+		},
+		{
+			"config": "carvemelon.mixinclient.json",
+			"environment": "client"
+		}
+	]
 }

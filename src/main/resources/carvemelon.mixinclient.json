@@ -3,7 +3,7 @@
 	"package": "quaternary.carvemelon.mixin.client",
 	"compatibilityLevel": "JAVA_8",
 	"mixins": [
-		"MixinInGameHud"
+		"MixinInGameHUD"
 	],
 	"injectors": {
 		"defaultRequire": 1

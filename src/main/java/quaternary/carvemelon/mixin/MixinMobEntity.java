@@ -14,7 +14,7 @@ import quaternary.carvemelon.CarveMelon;
 public class MixinMobEntity {
 	@Inject(
 					at = @At("HEAD"),
-					method = "Lnet/minecraft/entity/mob/MobEntity;getPreferredEquipmentSlot(Lnet/minecraft/item/ItemStack;)Lnet/minecraft/entity/EquipmentSlot;",
+					method = "getPreferredEquipmentSlot(Lnet/minecraft/item/ItemStack;)Lnet/minecraft/entity/EquipmentSlot;",
 					cancellable = true
 	)
 	private static void hookGetPreferredEquipmentSlot(ItemStack stack, CallbackInfoReturnable<EquipmentSlot> cir) {
