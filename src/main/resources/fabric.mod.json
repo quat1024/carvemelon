@@ -21,12 +21,6 @@
 	},
 	
 	"mixins": [
-		{
-			"config": "carvemelon.mixin.json"
-		},
-		{
-			"config": "carvemelon.mixinclient.json",
-			"environment": "client"
-		}
+		"carvemelon.mixin.json"
 	]
 }

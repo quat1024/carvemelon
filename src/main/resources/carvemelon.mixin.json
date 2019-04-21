@@ -7,6 +7,9 @@
 		"MixinRedstoneWire",
 		"MixinMobEntity"
 	],
+	"client": [
+		"client.MixinInGameHud"
+	],
 	"injectors": {
 		"defaultRequire": 1
 	}
