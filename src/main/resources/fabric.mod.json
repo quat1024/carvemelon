@@ -9,7 +9,8 @@
 	"icon": "assets/carvemelon/melons_icon.png",
 	"contact": {
 		"sources": "https://github.com/quat1024/carvemelon",
-		"issues": "https://github.com/quat1024/carvemelon/issues"
+		"issues": "https://github.com/quat1024/carvemelon/issues",
+		"homepage": "https://minecraft.curseforge.com/projects/carved-melons"
 	},
 	
 	"license": "MPL-2.0",
