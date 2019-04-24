@@ -2,6 +2,7 @@ package quaternary.carvemelon;
 
 import net.fabricmc.api.ModInitializer;
 import net.fabricmc.fabric.api.block.FabricBlockSettings;
+import net.fabricmc.fabric.api.client.itemgroup.FabricItemGroupBuilder;
 import net.fabricmc.fabric.api.event.player.UseBlockCallback;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
@@ -19,7 +20,6 @@ import net.minecraft.sound.SoundEvents;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.Hand;
 import net.minecraft.util.Identifier;
-import net.minecraft.util.hit.BlockHitResult;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
 import net.minecraft.util.registry.Registry;
@@ -33,35 +33,44 @@ public class CarveMelon implements ModInitializer {
 	public static MelonCarvedBlock MELON_CARVED;
 	public static MelonLanternBlock MELON_LANTERN;
 	
+	public static ItemGroup GROUP;
+	
 	@Override
 	public void onInitialize() {
+		//Create item group
+		GROUP = FabricItemGroupBuilder.create(
+			new Identifier(MODID, "tab")
+		).icon(() -> new ItemStack(Registry.ITEM.get(
+			new Identifier(MODID, "melon_o_lantern")
+		))).build();
+		
 		//Create blocks
 		MELON_CARVED = Registry.BLOCK.add(
-						new Identifier(MODID, "carved_melon"),
-						new MelonCarvedBlock(
-										//Just copy the settings on the melon.
-										FabricBlockSettings.copy(Blocks.MELON)
-										.build()
-						)
+			new Identifier(MODID, "carved_melon"),
+			new MelonCarvedBlock(
+				//Just copy the settings on the melon.
+				FabricBlockSettings.copy(Blocks.MELON)
+					.build()
+			)
 		);
 		
 		MELON_LANTERN = Registry.BLOCK.add(
-						new Identifier(MODID, "melon_o_lantern"),
-						new MelonLanternBlock(
-										//This block glows, so let's add a light level setting too.
-										FabricBlockSettings.copy(MELON_CARVED)
-										.lightLevel(7)
-										.build()
-						)
+			new Identifier(MODID, "melon_o_lantern"),
+			new MelonLanternBlock(
+				//This block glows, so let's add a light level setting too.
+				FabricBlockSettings.copy(MELON_CARVED)
+					.lightLevel(7)
+					.build()
+			)
 		);
 		
 		//Create blockitems
-		Registry.ITEM.add(Registry.BLOCK.getId(MELON_CARVED), new BlockItem(MELON_CARVED, new Item.Settings().itemGroup(ItemGroup.BUILDING_BLOCKS)));
-		Registry.ITEM.add(Registry.BLOCK.getId(MELON_LANTERN), new BlockItem(MELON_LANTERN, new Item.Settings().itemGroup(ItemGroup.REDSTONE)));
+		Registry.ITEM.add(Registry.BLOCK.getId(MELON_CARVED), new BlockItem(MELON_CARVED, new Item.Settings().itemGroup(GROUP)));
+		Registry.ITEM.add(Registry.BLOCK.getId(MELON_LANTERN), new BlockItem(MELON_LANTERN, new Item.Settings().itemGroup(GROUP)));
 		
 		//Register the axe as being effective against these blocks
 		//Since the list is static, I just need any axe item to get an instance of it
-		Set<Block> axeEffectiveBlocks = ((IMixinAxeItem)Items.WOODEN_AXE).getEffectiveBlocks();
+		Set<Block> axeEffectiveBlocks = ((IMixinAxeItem) Items.WOODEN_AXE).getEffectiveBlocks();
 		axeEffectiveBlocks.add(MELON_CARVED);
 		axeEffectiveBlocks.add(MELON_LANTERN);
 		
@@ -81,7 +90,9 @@ public class CarveMelon implements ModInitializer {
 					world.setBlockState(pos, MELON_CARVED.getCarvingState(player, dir));
 					
 					//damage shears
-					if(!player.isCreative()) held.applyDamage(1, player, (p) -> p.sendEquipmentBreakStatus(EquipmentSlot.HAND_MAIN));
+					if(!player.isCreative()) {
+						held.applyDamage(1, player, (p) -> p.sendEquipmentBreakStatus(EquipmentSlot.HAND_MAIN));
+					}
 					
 					//play sound
 					world.playSound(null, pos, SoundEvents.BLOCK_PUMPKIN_CARVE, SoundCategory.BLOCKS, 1.0F, 1.0F);
