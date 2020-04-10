@@ -1,4 +1,4 @@
-package quaternary.carvemelon;
+package agency.highlysuspect.carvedmelons;
 
 import net.fabricmc.api.ModInitializer;
 import net.fabricmc.fabric.api.block.FabricBlockSettings;
@@ -24,8 +24,8 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
 import net.minecraft.util.registry.Registry;
 
-public class CarveMelon implements ModInitializer {
-	public static final String MODID = "carvemelon";
+public class Init implements ModInitializer {
+	public static final String MODID = "carvedmelons";
 	
 	public static MelonCarvedBlock MELON_CARVED;
 	public static MelonLanternBlock MELON_LANTERN;

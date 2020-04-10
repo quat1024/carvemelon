@@ -1,6 +1,6 @@
 {
 	"required": true,
-	"package": "quaternary.carvemelon.mixin",
+	"package": "agency.highlysuspect.carvedmelons.mixin",
 	"compatibilityLevel": "JAVA_8",
 	"mixins": [
 		"MixinRedstoneWire",

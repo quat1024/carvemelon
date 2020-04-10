@@ -2,7 +2,7 @@
 	"parent": "minecraft:block/cube",
 	"textures": {
 		"up": "minecraft:block/melon_top",
-		"north": "carvemelon:carved_melon_side",
+		"north": "carvedmelons:carved_melon_side",
 		"east": "minecraft:block/melon_side",
 		"south": "minecraft:block/melon_side",
 		"west": "minecraft:block/melon_side",

@@ -1,4 +1,4 @@
-package quaternary.carvemelon;
+package agency.highlysuspect.carvedmelons;
 
 import net.minecraft.entity.Entity;
 import net.minecraft.util.StringIdentifiable;

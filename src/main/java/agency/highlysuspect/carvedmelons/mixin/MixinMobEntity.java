@@ -1,4 +1,4 @@
-package quaternary.carvemelon.mixin;
+package agency.highlysuspect.carvedmelons.mixin;
 
 import net.minecraft.entity.EquipmentSlot;
 import net.minecraft.entity.mob.MobEntity;
@@ -7,7 +7,7 @@ import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
-import quaternary.carvemelon.CarveMelon;
+import agency.highlysuspect.carvedmelons.Init;
 
 @Mixin(MobEntity.class)
 public class MixinMobEntity {
@@ -17,7 +17,7 @@ public class MixinMobEntity {
 		cancellable = true
 	)
 	private static void whenGettingPreferredEquipmentSlot(ItemStack stack, CallbackInfoReturnable<EquipmentSlot> cir) {
-		if(stack.getItem() == CarveMelon.MELON_CARVED.asItem()) {
+		if(stack.getItem() == Init.MELON_CARVED.asItem()) {
 			cir.setReturnValue(EquipmentSlot.HEAD);
 		}
 	}

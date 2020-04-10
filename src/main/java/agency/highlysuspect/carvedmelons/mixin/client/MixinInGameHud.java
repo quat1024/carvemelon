@@ -1,4 +1,4 @@
-package quaternary.carvemelon.mixin.client;
+package agency.highlysuspect.carvedmelons.mixin.client;
 
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.font.TextRenderer;
@@ -10,7 +10,7 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import org.spongepowered.asm.mixin.injection.callback.LocalCapture;
-import quaternary.carvemelon.CarveMelon;
+import agency.highlysuspect.carvedmelons.Init;
 
 @SuppressWarnings("MethodCallSideOnly")
 @Mixin(InGameHud.class)
@@ -27,7 +27,7 @@ public abstract class MixinInGameHud {
 		locals = LocalCapture.CAPTURE_FAILSOFT
 	)
 	private void whenRendering(float what, CallbackInfo cbi, TextRenderer blah, ItemStack stack) {
-		if(MinecraftClient.getInstance().options.perspective == 0 && stack.getItem() == CarveMelon.MELON_CARVED.asItem()) {
+		if(MinecraftClient.getInstance().options.perspective == 0 && stack.getItem() == Init.MELON_CARVED.asItem()) {
 			this.renderPumpkinOverlay();
 		}
 	}

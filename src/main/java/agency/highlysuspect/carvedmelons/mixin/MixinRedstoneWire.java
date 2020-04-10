@@ -1,4 +1,4 @@
-package quaternary.carvemelon.mixin;
+package agency.highlysuspect.carvedmelons.mixin;
 
 import net.minecraft.block.BlockState;
 import net.minecraft.block.RedstoneWireBlock;
@@ -7,8 +7,8 @@ import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
-import quaternary.carvemelon.CarveMelon;
-import quaternary.carvemelon.MelonLanternBlock;
+import agency.highlysuspect.carvedmelons.Init;
+import agency.highlysuspect.carvedmelons.MelonLanternBlock;
 
 @Mixin(RedstoneWireBlock.class)
 public class MixinRedstoneWire {
@@ -18,7 +18,7 @@ public class MixinRedstoneWire {
 		cancellable = true
 	)
 	private static void whenConnectingTo(BlockState state, Direction direction, CallbackInfoReturnable<Boolean> cir) {
-		if(state.getBlock() == CarveMelon.MELON_LANTERN) {
+		if(state.getBlock() == Init.MELON_LANTERN) {
 			cir.setReturnValue(state.get(MelonLanternBlock.FACING).primaryDirection.getOpposite() == direction);
 		}
 	}

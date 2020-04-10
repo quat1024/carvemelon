@@ -1,4 +1,4 @@
-package quaternary.carvemelon;
+package agency.highlysuspect.carvedmelons;
 
 import net.minecraft.block.BlockState;
 import net.minecraft.block.piston.PistonBehavior;

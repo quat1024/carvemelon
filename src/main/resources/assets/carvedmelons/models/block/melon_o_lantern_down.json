@@ -1,8 +1,8 @@
 {
 	"parent": "minecraft:block/cube_bottom_top",
 	"textures": {
-		"top": "carvemelon:melon_o_lantern_ends",
+		"top": "minecraft:block/melon_top",
 		"side": "minecraft:block/melon_side",
-		"bottom": "minecraft:block/melon_top"
+		"bottom": "carvedmelons:melon_o_lantern_ends"
 	}
 }
