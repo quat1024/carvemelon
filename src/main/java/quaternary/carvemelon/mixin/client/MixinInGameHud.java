@@ -12,6 +12,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import org.spongepowered.asm.mixin.injection.callback.LocalCapture;
 import quaternary.carvemelon.CarveMelon;
 
+@SuppressWarnings("MethodCallSideOnly")
 @Mixin(InGameHud.class)
 public abstract class MixinInGameHud {
 	@Shadow
@@ -22,11 +23,11 @@ public abstract class MixinInGameHud {
 			value = "INVOKE_ASSIGN",
 			target = "Lnet/minecraft/entity/player/PlayerInventory;getArmorStack(I)Lnet/minecraft/item/ItemStack;"
 		),
-		method = "draw(F)V",
+		method = "render",
 		locals = LocalCapture.CAPTURE_FAILSOFT
 	)
-	private void hookDraw(float var1, CallbackInfo cbi, TextRenderer var2, ItemStack stack) {
-		if(MinecraftClient.getInstance().options.perspective == 0 && stack.getItem() == CarveMelon.MELON_CARVED.getItem()) {
+	private void whenRendering(float what, CallbackInfo cbi, TextRenderer blah, ItemStack stack) {
+		if(MinecraftClient.getInstance().options.perspective == 0 && stack.getItem() == CarveMelon.MELON_CARVED.asItem()) {
 			this.renderPumpkinOverlay();
 		}
 	}

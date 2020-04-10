@@ -13,11 +13,11 @@ import quaternary.carvemelon.MelonLanternBlock;
 @Mixin(RedstoneWireBlock.class)
 public class MixinRedstoneWire {
 	@Inject(
-					at = @At("HEAD"),
-					method = "method_10482(Lnet/minecraft/block/BlockState;Lnet/minecraft/util/math/Direction;)Z",
-					cancellable = true
+		at = @At("HEAD"),
+		method = "connectsTo(Lnet/minecraft/block/BlockState;Lnet/minecraft/util/math/Direction;)Z",
+		cancellable = true
 	)
-	private static void hookConnectsTo(BlockState state, Direction direction, CallbackInfoReturnable<Boolean> cir) {
+	private static void whenConnectingTo(BlockState state, Direction direction, CallbackInfoReturnable<Boolean> cir) {
 		if(state.getBlock() == CarveMelon.MELON_LANTERN) {
 			cir.setReturnValue(state.get(MelonLanternBlock.FACING).primaryDirection.getOpposite() == direction);
 		}

@@ -1,13 +1,13 @@
 package quaternary.carvemelon;
 
 import net.minecraft.entity.Entity;
-import net.minecraft.util.StringRepresentable;
+import net.minecraft.util.StringIdentifiable;
 import net.minecraft.util.math.Direction;
 
 import java.util.EnumMap;
 import java.util.Locale;
 
-public enum TwelveDirection implements StringRepresentable {
+public enum TwelveDirection implements StringIdentifiable {
 	UP_NORTH(Direction.UP, Direction.NORTH),
 	UP_SOUTH(Direction.UP, Direction.SOUTH),
 	UP_EAST(Direction.UP, Direction.EAST),

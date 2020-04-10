@@ -6,7 +6,7 @@ import net.minecraft.block.piston.PistonBehavior;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemPlacementContext;
-import net.minecraft.state.StateFactory;
+import net.minecraft.state.StateManager;
 import net.minecraft.state.property.EnumProperty;
 import net.minecraft.util.math.Direction;
 
@@ -15,7 +15,7 @@ public class MelonCarvedBlock extends Block {
 		super(s);
 	}
 	
-	public static final EnumProperty<TwelveDirection> FACING = EnumProperty.create("facing", TwelveDirection.class);
+	public static final EnumProperty<TwelveDirection> FACING = EnumProperty.of("facing", TwelveDirection.class);
 	
 	@Override
 	public BlockState getPlacementState(ItemPlacementContext ctx) {
@@ -41,7 +41,7 @@ public class MelonCarvedBlock extends Block {
 	}
 	
 	@Override
-	protected void appendProperties(StateFactory.Builder<Block, BlockState> builder) {
-		super.appendProperties(builder.with(FACING));
+	protected void appendProperties(StateManager.Builder<Block, BlockState> builder) {
+		super.appendProperties(builder.add(FACING));
 	}
 }

@@ -4,7 +4,7 @@ import net.fabricmc.api.ModInitializer;
 import net.fabricmc.fabric.api.block.FabricBlockSettings;
 import net.fabricmc.fabric.api.client.itemgroup.FabricItemGroupBuilder;
 import net.fabricmc.fabric.api.event.player.UseBlockCallback;
-import net.minecraft.block.Block;
+import net.fabricmc.fabric.api.tools.FabricToolTags;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
 import net.minecraft.entity.EquipmentSlot;
@@ -23,9 +23,6 @@ import net.minecraft.util.Identifier;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
 import net.minecraft.util.registry.Registry;
-import quaternary.carvemelon.mixin.IMixinAxeItem;
-
-import java.util.Set;
 
 public class CarveMelon implements ModInitializer {
 	public static final String MODID = "carvemelon";
@@ -50,6 +47,7 @@ public class CarveMelon implements ModInitializer {
 			new MelonCarvedBlock(
 				//Just copy the settings on the melon.
 				FabricBlockSettings.copy(Blocks.MELON)
+					.breakByTool(FabricToolTags.AXES) //and add fabric's tool-utility extension
 					.build()
 			)
 		);
@@ -65,18 +63,12 @@ public class CarveMelon implements ModInitializer {
 		);
 		
 		//Create blockitems
-		Registry.ITEM.add(Registry.BLOCK.getId(MELON_CARVED), new BlockItem(MELON_CARVED, new Item.Settings().itemGroup(GROUP)));
-		Registry.ITEM.add(Registry.BLOCK.getId(MELON_LANTERN), new BlockItem(MELON_LANTERN, new Item.Settings().itemGroup(GROUP)));
-		
-		//Register the axe as being effective against these blocks
-		//Since the list is static, I just need any axe item to get an instance of it
-		Set<Block> axeEffectiveBlocks = ((IMixinAxeItem) Items.WOODEN_AXE).getEffectiveBlocks();
-		axeEffectiveBlocks.add(MELON_CARVED);
-		axeEffectiveBlocks.add(MELON_LANTERN);
+		Registry.ITEM.add(Registry.BLOCK.getId(MELON_CARVED), new BlockItem(MELON_CARVED, new Item.Settings().group(GROUP)));
+		Registry.ITEM.add(Registry.BLOCK.getId(MELON_LANTERN), new BlockItem(MELON_LANTERN, new Item.Settings().group(GROUP)));
 		
 		//Register an interact handler for carving the vanilla melon with shears
 		UseBlockCallback.EVENT.register(((player, world, hand, result) -> {
-			if(player.isSpectator() || hand != Hand.MAIN) return ActionResult.PASS;
+			if(player.isSpectator() || hand != Hand.MAIN_HAND) return ActionResult.PASS;
 			
 			BlockPos pos = result.getBlockPos();
 			Direction dir = result.getSide();
@@ -91,7 +83,7 @@ public class CarveMelon implements ModInitializer {
 					
 					//damage shears
 					if(!player.isCreative()) {
-						held.applyDamage(1, player, (p) -> p.sendEquipmentBreakStatus(EquipmentSlot.HAND_MAIN));
+						held.damage(1, player, (p) -> p.sendEquipmentBreakStatus(EquipmentSlot.MAINHAND));
 					}
 					
 					//play sound
