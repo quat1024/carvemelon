@@ -6,7 +6,7 @@
 			"entries": [
 				{
 					"type": "minecraft:item",
-					"name": "carvemelon:melon_o_lantern"
+					"name": "carvedmelons:melon_o_lantern"
 				}
 			],
 			"conditions": [
