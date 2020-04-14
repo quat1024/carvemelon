@@ -57,6 +57,7 @@ public class Init implements ModInitializer {
 			new MelonLanternBlock(
 				//This block glows, so let's add a light level setting too.
 				FabricBlockSettings.copy(MELON_CARVED)
+					.breakByTool(FabricToolTags.AXES)
 					.lightLevel(7)
 					.build()
 			)
