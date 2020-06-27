@@ -3,6 +3,7 @@ package agency.highlysuspect.carvedmelons.mixin.client;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.font.TextRenderer;
 import net.minecraft.client.gui.hud.InGameHud;
+import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.item.ItemStack;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
@@ -26,7 +27,7 @@ public abstract class MixinInGameHud {
 		method = "render",
 		locals = LocalCapture.CAPTURE_FAILSOFT
 	)
-	private void whenRendering(float what, CallbackInfo cbi, TextRenderer blah, ItemStack stack) {
+	private void whenRendering(MatrixStack matrices, float what, CallbackInfo cbi, TextRenderer blah, ItemStack stack) {
 		if(MinecraftClient.getInstance().options.perspective == 0 && stack.getItem() == Init.MELON_CARVED.asItem()) {
 			this.renderPumpkinOverlay();
 		}

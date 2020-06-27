@@ -1,10 +1,10 @@
 package agency.highlysuspect.carvedmelons;
 
 import net.fabricmc.api.ModInitializer;
-import net.fabricmc.fabric.api.block.FabricBlockSettings;
 import net.fabricmc.fabric.api.client.itemgroup.FabricItemGroupBuilder;
 import net.fabricmc.fabric.api.event.player.UseBlockCallback;
-import net.fabricmc.fabric.api.tools.FabricToolTags;
+import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
+import net.fabricmc.fabric.api.tool.attribute.v1.FabricToolTags;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
 import net.minecraft.entity.EquipmentSlot;
@@ -35,37 +35,34 @@ public class Init implements ModInitializer {
 	@Override
 	public void onInitialize() {
 		//Create item group
-		GROUP = FabricItemGroupBuilder.create(
-			new Identifier(MODID, "tab")
-		).icon(() -> new ItemStack(Registry.ITEM.get(
-			new Identifier(MODID, "melon_o_lantern")
-		))).build();
+		GROUP = FabricItemGroupBuilder.build(
+			new Identifier(MODID, "tab"),
+			() -> new ItemStack(MELON_LANTERN)
+		);
 		
 		//Create blocks
-		MELON_CARVED = Registry.BLOCK.add(
+		MELON_CARVED = Registry.register(Registry.BLOCK,
 			new Identifier(MODID, "carved_melon"),
 			new MelonCarvedBlock(
 				//Just copy the settings on the melon.
-				FabricBlockSettings.copy(Blocks.MELON)
+				FabricBlockSettings.copyOf(Blocks.MELON)
 					.breakByTool(FabricToolTags.AXES) //and add fabric's tool-utility extension
-					.build()
 			)
 		);
 		
-		MELON_LANTERN = Registry.BLOCK.add(
+		MELON_LANTERN = Registry.register(Registry.BLOCK,
 			new Identifier(MODID, "melon_o_lantern"),
 			new MelonLanternBlock(
 				//This block glows, so let's add a light level setting too.
-				FabricBlockSettings.copy(MELON_CARVED)
+				FabricBlockSettings.copyOf(MELON_CARVED)
 					.breakByTool(FabricToolTags.AXES)
 					.lightLevel(7)
-					.build()
 			)
 		);
 		
 		//Create blockitems
-		Registry.ITEM.add(Registry.BLOCK.getId(MELON_CARVED), new BlockItem(MELON_CARVED, new Item.Settings().group(GROUP)));
-		Registry.ITEM.add(Registry.BLOCK.getId(MELON_LANTERN), new BlockItem(MELON_LANTERN, new Item.Settings().group(GROUP)));
+		Registry.register(Registry.ITEM, Registry.BLOCK.getId(MELON_CARVED), new BlockItem(MELON_CARVED, new Item.Settings().group(GROUP)));
+		Registry.register(Registry.ITEM, Registry.BLOCK.getId(MELON_LANTERN), new BlockItem(MELON_LANTERN, new Item.Settings().group(GROUP)));
 		
 		//Register an interact handler for carving the vanilla melon with shears
 		UseBlockCallback.EVENT.register(((player, world, hand, result) -> {
