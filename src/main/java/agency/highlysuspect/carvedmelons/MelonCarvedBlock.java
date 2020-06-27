@@ -8,6 +8,8 @@ import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemPlacementContext;
 import net.minecraft.state.StateManager;
 import net.minecraft.state.property.EnumProperty;
+import net.minecraft.util.BlockMirror;
+import net.minecraft.util.BlockRotation;
 import net.minecraft.util.math.Direction;
 
 public class MelonCarvedBlock extends Block {
@@ -43,5 +45,15 @@ public class MelonCarvedBlock extends Block {
 	@Override
 	protected void appendProperties(StateManager.Builder<Block, BlockState> builder) {
 		super.appendProperties(builder.add(FACING));
+	}
+	
+	@Override
+	public BlockState rotate(BlockState state, BlockRotation rotation) {
+		return state.with(FACING, state.get(FACING).rotate(rotation));
+	}
+	
+	@Override
+	public BlockState mirror(BlockState state, BlockMirror mirror) {
+		return state.with(FACING, state.get(FACING).mirror(mirror));
 	}
 }

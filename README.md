@@ -17,10 +17,6 @@ Stuff it does:
 * Only the melon's face emits a redstone signal.
 * Render pumpkin overlay when it's on your head (needs a mixin)
 
-TODO List:
-
-* Properly support rotating my cool special 12-direction block state with e.g. structure blocks.
-
 ### License
 
 Mozilla Public License 2.0 or any later version.

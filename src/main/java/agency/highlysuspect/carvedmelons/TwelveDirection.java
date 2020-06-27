@@ -1,6 +1,8 @@
 package agency.highlysuspect.carvedmelons;
 
 import net.minecraft.entity.Entity;
+import net.minecraft.util.BlockMirror;
+import net.minecraft.util.BlockRotation;
 import net.minecraft.util.StringIdentifiable;
 import net.minecraft.util.math.Direction;
 
@@ -92,5 +94,13 @@ public enum TwelveDirection implements StringIdentifiable {
 			case DOWN_WEST: return UP_EAST;
 			default: throw new RuntimeException("Impossible");
 		}
+	}
+	
+	public TwelveDirection rotate(BlockRotation rotation) {
+		return byPrimary.get(rotation.rotate(primaryDirection)).withSecondary(secondaryDirection == null ? null : rotation.rotate(secondaryDirection));
+	}
+	
+	public TwelveDirection mirror(BlockMirror mirror) {
+		return byPrimary.get(mirror.apply(primaryDirection)).withSecondary(secondaryDirection == null ? null : mirror.apply(secondaryDirection));
 	}
 }
