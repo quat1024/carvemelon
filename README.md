@@ -4,7 +4,7 @@ Adds a Carved Melon and Melon o'Lantern, analogs to the Carved Pumpkin and Jack 
 
 Very much inspired by this Redditpost: https://www.reddit.com/r/minecraftsuggestions/comments/9huxeb/
 
-For 18w50a with Fabric mod loader.
+For 1.16.1 with Fabric mod loader.
 
 Stuff it does:
 
