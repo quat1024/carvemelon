@@ -28,7 +28,7 @@ public abstract class MixinInGameHud {
 		locals = LocalCapture.CAPTURE_FAILSOFT
 	)
 	private void whenRendering(MatrixStack matrices, float what, CallbackInfo cbi, TextRenderer blah, ItemStack stack) {
-		if(MinecraftClient.getInstance().options.perspective == 0 && stack.getItem() == Init.MELON_CARVED.asItem()) {
+		if(MinecraftClient.getInstance().options.getPerspective().isFirstPerson() && stack.getItem() == Init.MELON_CARVED.asItem()) {
 			this.renderPumpkinOverlay();
 		}
 	}
