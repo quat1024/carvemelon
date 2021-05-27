@@ -56,7 +56,7 @@ public class Init implements ModInitializer {
 				//This block glows, so let's add a light level setting too.
 				FabricBlockSettings.copyOf(MELON_CARVED)
 					.breakByTool(FabricToolTags.AXES)
-					.lightLevel(7)
+					.luminance(7)
 			)
 		);
 		
