@@ -1,7 +1,7 @@
 {
 	"schemaVersion": 1,
 	"id": "carvedmelons",
-	"version": "${gradleversion}",
+	"version": "${version}",
 	
 	"name": "Carved Melons",
 	"description": "Carve melons, and use them in redstone!",
