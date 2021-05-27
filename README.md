@@ -19,4 +19,4 @@ Stuff it does:
 
 ### License
 
-Mozilla Public License 2.0 or any later version.
+LGPL 3.0 or later.

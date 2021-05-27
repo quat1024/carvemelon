@@ -13,7 +13,7 @@
 		"homepage": "https://minecraft.curseforge.com/projects/carved-melons"
 	},
 	
-	"license": "MPL-2.0",
+	"license": "LGPL-3.0-or-later",
 	
 	"entrypoints": {
 		"main": [
