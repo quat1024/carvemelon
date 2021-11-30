@@ -1,15 +1,14 @@
 package agency.highlysuspect.carvedmelons;
 
-import net.minecraft.entity.Entity;
-import net.minecraft.util.BlockMirror;
-import net.minecraft.util.BlockRotation;
-import net.minecraft.util.StringIdentifiable;
-import net.minecraft.util.math.Direction;
-
 import java.util.EnumMap;
 import java.util.Locale;
+import net.minecraft.core.Direction;
+import net.minecraft.util.StringRepresentable;
+import net.minecraft.world.entity.Entity;
+import net.minecraft.world.level.block.Mirror;
+import net.minecraft.world.level.block.Rotation;
 
-public enum TwelveDirection implements StringIdentifiable {
+public enum TwelveDirection implements StringRepresentable {
 	UP_NORTH(Direction.UP, Direction.NORTH),
 	UP_SOUTH(Direction.UP, Direction.SOUTH),
 	UP_EAST(Direction.UP, Direction.EAST),
@@ -55,52 +54,51 @@ public enum TwelveDirection implements StringIdentifiable {
 	}
 	
 	@Override
-	public String asString() {
+	public String getSerializedName() {
 		return name().toLowerCase(Locale.ROOT);
 	}
 	
 	public TwelveDirection withSecondary(Direction sec) {
-		switch(primaryDirection) {
-			case UP: return ups.get(sec);
-			case DOWN: return downs.get(sec);
-			default: return this;
-		}
+		return switch(primaryDirection) {
+			case UP -> ups.get(sec);
+			case DOWN -> downs.get(sec);
+			default -> this;
+		};
 	}
 	
 	public static TwelveDirection fromEntity(Entity ent) {
-		Direction d = Direction.getEntityFacingOrder(ent)[0];
+		Direction d = Direction.orderedByNearest(ent)[0];
 		TwelveDirection td = byPrimary.get(d);
 		
 		if(d.getAxis() != Direction.Axis.Y) {
 			return td;
 		} else {
-			return td.withSecondary(ent.getHorizontalFacing().getOpposite());
+			return td.withSecondary(ent.getDirection().getOpposite());
 		}
 	}
 	
 	public TwelveDirection getOpposite() {
-		switch(this) {
-			case UP_NORTH: return DOWN_SOUTH;
-			case UP_EAST: return DOWN_WEST;
-			case UP_SOUTH: return DOWN_NORTH;
-			case UP_WEST: return DOWN_EAST;
-			case NORTH: return SOUTH;
-			case EAST: return WEST;
-			case SOUTH: return NORTH;
-			case WEST: return EAST;
-			case DOWN_NORTH: return UP_SOUTH;
-			case DOWN_EAST: return UP_WEST;
-			case DOWN_SOUTH: return UP_NORTH;
-			case DOWN_WEST: return UP_EAST;
-			default: throw new RuntimeException("Impossible");
-		}
+		return switch(this) {
+			case UP_NORTH -> DOWN_SOUTH;
+			case UP_EAST -> DOWN_WEST;
+			case UP_SOUTH -> DOWN_NORTH;
+			case UP_WEST -> DOWN_EAST;
+			case NORTH -> SOUTH;
+			case EAST -> WEST;
+			case SOUTH -> NORTH;
+			case WEST -> EAST;
+			case DOWN_NORTH -> UP_SOUTH;
+			case DOWN_EAST -> UP_WEST;
+			case DOWN_SOUTH -> UP_NORTH;
+			case DOWN_WEST -> UP_EAST;
+		};
 	}
 	
-	public TwelveDirection rotate(BlockRotation rotation) {
+	public TwelveDirection rotate(Rotation rotation) {
 		return byPrimary.get(rotation.rotate(primaryDirection)).withSecondary(secondaryDirection == null ? null : rotation.rotate(secondaryDirection));
 	}
 	
-	public TwelveDirection mirror(BlockMirror mirror) {
-		return byPrimary.get(mirror.apply(primaryDirection)).withSecondary(secondaryDirection == null ? null : mirror.apply(secondaryDirection));
+	public TwelveDirection mirror(Mirror mirror) {
+		return byPrimary.get(mirror.mirror(primaryDirection)).withSecondary(secondaryDirection == null ? null : mirror.mirror(secondaryDirection));
 	}
 }

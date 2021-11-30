@@ -1,59 +1,59 @@
 package agency.highlysuspect.carvedmelons;
 
-import net.minecraft.block.Block;
-import net.minecraft.block.BlockState;
-import net.minecraft.block.piston.PistonBehavior;
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.item.ItemPlacementContext;
-import net.minecraft.state.StateManager;
-import net.minecraft.state.property.EnumProperty;
-import net.minecraft.util.BlockMirror;
-import net.minecraft.util.BlockRotation;
-import net.minecraft.util.math.Direction;
+import net.minecraft.core.Direction;
+import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.context.BlockPlaceContext;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.Mirror;
+import net.minecraft.world.level.block.Rotation;
+import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.block.state.StateDefinition;
+import net.minecraft.world.level.block.state.properties.EnumProperty;
+import net.minecraft.world.level.material.PushReaction;
 
 public class MelonCarvedBlock extends Block {
-	public MelonCarvedBlock(Settings s) {
+	public MelonCarvedBlock(Properties s) {
 		super(s);
 	}
 	
-	public static final EnumProperty<TwelveDirection> FACING = EnumProperty.of("facing", TwelveDirection.class);
+	public static final EnumProperty<TwelveDirection> FACING = EnumProperty.create("facing", TwelveDirection.class);
 	
 	@Override
-	public BlockState getPlacementState(ItemPlacementContext ctx) {
-		PlayerEntity placer = ctx.getPlayer();
-		if(placer == null) return getDefaultState();
+	public BlockState getStateForPlacement(BlockPlaceContext ctx) {
+		Player placer = ctx.getPlayer();
+		if(placer == null) return defaultBlockState();
 		else {
-			return getDefaultState().with(FACING, TwelveDirection.fromEntity(placer).getOpposite());
+			return defaultBlockState().setValue(FACING, TwelveDirection.fromEntity(placer).getOpposite());
 		}
 	}
 	
 	public BlockState getCarvingState(Entity ent, Direction hitDirection) {
 		TwelveDirection td = TwelveDirection.byPrimary.get(hitDirection);
 		if(hitDirection.getAxis() == Direction.Axis.Y) {
-			td = td.withSecondary(ent.getHorizontalFacing());
+			td = td.withSecondary(ent.getDirection());
 		}
 		
-		return getDefaultState().with(FACING, td);
+		return defaultBlockState().setValue(FACING, td);
 	}
 	
 	@Override
-	public PistonBehavior getPistonBehavior(BlockState var1) {
-		return PistonBehavior.DESTROY;
+	public PushReaction getPistonPushReaction(BlockState var1) {
+		return PushReaction.DESTROY;
 	}
 	
 	@Override
-	protected void appendProperties(StateManager.Builder<Block, BlockState> builder) {
-		super.appendProperties(builder.add(FACING));
+	protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder) {
+		super.createBlockStateDefinition(builder.add(FACING));
 	}
 	
 	@Override
-	public BlockState rotate(BlockState state, BlockRotation rotation) {
-		return state.with(FACING, state.get(FACING).rotate(rotation));
+	public BlockState rotate(BlockState state, Rotation rotation) {
+		return state.setValue(FACING, state.getValue(FACING).rotate(rotation));
 	}
 	
 	@Override
-	public BlockState mirror(BlockState state, BlockMirror mirror) {
-		return state.with(FACING, state.get(FACING).mirror(mirror));
+	public BlockState mirror(BlockState state, Mirror mirror) {
+		return state.setValue(FACING, state.getValue(FACING).mirror(mirror));
 	}
 }
