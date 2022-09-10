@@ -2,7 +2,6 @@ package agency.highlysuspect.carvedmelons.mixin.client;
 
 import agency.highlysuspect.carvedmelons.Init;
 import com.mojang.blaze3d.vertex.PoseStack;
-import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.Font;
 import net.minecraft.client.gui.Gui;
 import net.minecraft.resources.ResourceLocation;
