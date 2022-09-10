@@ -3,7 +3,6 @@ package agency.highlysuspect.carvedmelons;
 import net.fabricmc.api.ModInitializer;
 import net.fabricmc.fabric.api.client.itemgroup.FabricItemGroupBuilder;
 import net.fabricmc.fabric.api.event.player.UseBlockCallback;
-import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.core.Registry;
@@ -21,6 +20,7 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.ShearsItem;
 import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.block.state.BlockState;
 
 public class Init implements ModInitializer {
@@ -44,7 +44,7 @@ public class Init implements ModInitializer {
 			new ResourceLocation(MODID, "carved_melon"),
 			new MelonCarvedBlock(
 				//Just copy the settings on the melon.
-				FabricBlockSettings.copyOf(Blocks.MELON)
+				BlockBehaviour.Properties.copy(Blocks.MELON)
 			)
 		);
 		
@@ -52,7 +52,7 @@ public class Init implements ModInitializer {
 			new ResourceLocation(MODID, "melon_o_lantern"),
 			new MelonLanternBlock(
 				//This block glows, so let's add a light level setting too.
-				FabricBlockSettings.copyOf(MELON_CARVED).luminance(7)
+				BlockBehaviour.Properties.copy(MELON_CARVED).lightLevel(state -> 7)
 			)
 		);
 		

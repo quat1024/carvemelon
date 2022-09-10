@@ -3,7 +3,7 @@ plugins {
 	id 'maven-publish'
 }
 
-archivesBaseName = "${project.mod_name}-${project.minecraft_version}"
+archivesBaseName = "${project.modName}-${project.minecraftVersion}"
 
 java {
 	toolchain { languageVersion = JavaLanguageVersion.of(17) }
@@ -11,10 +11,14 @@ java {
 }
 
 dependencies {
-	minecraft "com.mojang:minecraft:${project.minecraft_version}"
+	minecraft "com.mojang:minecraft:${project.minecraftVersion}"
 	mappings loom.officialMojangMappings()
-	modImplementation "net.fabricmc:fabric-loader:${project.loader_version}"
-	modImplementation "net.fabricmc.fabric-api:fabric-api:${project.fabric_version}"
+	modImplementation "net.fabricmc:fabric-loader:${project.fabricLoaderVersion}"
+	
+	modImplementation fabricApi.module("fabric-item-groups-v0", project.fabricApiVersion)
+	modImplementation fabricApi.module("fabric-events-interaction-v0", project.fabricApiVersion)
+	modRuntimeOnly fabricApi.module("fabric-resource-loader-v0", project.fabricApiVersion)
+	modRuntimeOnly fabricApi.module("fabric-registry-sync-v0", project.fabricApiVersion) //fixes "Registry has already been frozen"
 }
 
 processResources {

@@ -26,7 +26,10 @@
 	],
 	"depends": {
 		"fabricloader": "*",
-		"fabric": "*",
+		"fabric-item-groups-v0": "*",
+		"fabric-events-interaction-v0": "*",
+		"fabric-resource-loader-v0": "*",
+		"fabric-registry-sync-v0": "*",
 		"minecraft": ">=1.19"
 	}
 }
